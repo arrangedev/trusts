@@ -70,7 +70,7 @@ pub struct MakeContributions<'info> {
     pub vault_token_account: Account<'info, token::TokenAccount>,
     pub mint: Account<'info, token::Mint>,
     #[account(mut)]
-    pub payer: UncheckedAccount<'info>,
+    pub payer: Signer<'info>,
     #[account(
         mut,
         constraint = payer_token_account.owner == payer.key()

@@ -38,16 +38,34 @@ pub mod trusts {
         )
     }
 
-    pub fn deposit(
+    pub fn deposit_vault(
         ctx: Context<Deposit>,
-        vault_id: u64,
         amount: u64,
     ) -> Result<()> {
         instructions::deposit(
             ctx, 
-            vault_id, 
             amount
         )
+    }
+
+    pub fn exec_contributions<'info>(
+        ctx: Context<'_, '_, '_, 'info, MakeContributions<'info>>
+    ) -> Result<()> {
+        instructions::make_contributions(ctx)
+    }
+
+    pub fn withdraw_vault(
+        ctx: Context<Withdraw>,
+        amount: u64
+    ) -> Result<()> {
+        instructions::withdraw(ctx, amount)
+    }
+
+    pub fn withdraw_protocol(
+        ctx: Context<WithdrawFromProtocol>,
+        amount: u64
+    ) -> Result<()> {
+        instructions::withdraw_from_protocol(ctx, amount)
     }
 }
 

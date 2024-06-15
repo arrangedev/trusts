@@ -43,14 +43,23 @@ pub fn withdraw_from_protocol(
         amount, // withdraw_amount
         false,  // withdraw_all
         None,   // return_type
-    );
+    )?;
 
     Ok(())
 }
 
 #[derive(Accounts)]
 pub struct WithdrawFromProtocol<'info> {
-    #[account(mut)]
+    #[account(
+        mut,
+        seeds = [
+            YieldVault::SEED_PREFIX.as_bytes(),
+            mint.key().as_ref(),
+            vault.vault_id.to_le_bytes().as_ref(),
+            payer.key().as_ref()
+        ],
+        bump,
+    )]
     pub vault: Account<'info, YieldVault>,
     #[account(
 		mut,
@@ -79,6 +88,7 @@ pub struct WithdrawFromProtocol<'info> {
     pub payer_token_account: Account<'info, token::TokenAccount>,
     // Programs & Sysvars
     #[account(address = lulo_cpi::ID)]
+    /// CHECK: CPI
     pub lulo_program: AccountInfo<'info>,
     pub clock: Sysvar<'info, Clock>,
     pub system_program: Program<'info, System>,

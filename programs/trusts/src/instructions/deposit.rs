@@ -5,7 +5,6 @@ use crate::state::YieldVault;
 
 pub fn deposit(
     ctx: Context<Deposit>,
-    vault_id: u64,
     amount: u64
 ) -> Result<()> {
     let vault = &mut ctx.accounts.vault;
@@ -40,7 +39,7 @@ pub fn deposit(
         None, // allowed protocols, None = All protocols
         None, // end_date, None = no end_date
         None, // return_type
-    );
+    )?;
 
     vault.amount += amount;
 
@@ -48,16 +47,13 @@ pub fn deposit(
 }
 
 #[derive(Accounts)]
-#[instruction(
-    vault_id: u64,
-)]
 pub struct Deposit<'info> {
     #[account(
         mut,
         seeds = [
             YieldVault::SEED_PREFIX.as_bytes(),
             mint.key().as_ref(),
-            vault_id.to_le_bytes().as_ref(),
+            vault.vault_id.to_le_bytes().as_ref(),
             payer.key().as_ref()
         ],
         bump,
@@ -84,6 +80,7 @@ pub struct Deposit<'info> {
     pub payer: Signer<'info>,
     // Programs
     #[account(address = lulo_cpi::ID)]
+    /// CHECK: CPI
     pub lulo_program: AccountInfo<'info>,
     pub system_program: Program<'info, System>,
     pub token_program: Program<'info, token::Token>,

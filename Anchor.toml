@@ -6,12 +6,14 @@ skip-lint = false
 
 [programs.localnet]
 trusts = "ATVixC5VzQYwU9FB2NQgzQ6yp7jxz4XYsJLvkqMQQgEV"
+[programs.devnet]
+trusts = "ATVixC5VzQYwU9FB2NQgzQ6yp7jxz4XYsJLvkqMQQgEV"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
+cluster = "Devnet"
 wallet = "/Users/joeymeere/.config/solana/id.json"
 
 [scripts]

@@ -1,0 +1,3934 @@
+{
+    "version": "0.1.0",
+    "name": "flexlend",
+    "instructions": [
+      {
+        "name": "initFlex",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "feePayer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["becomes the \"authority\" in CPI"]
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "closeTokenAccount",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "userDeposit",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "feePayer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "ownerTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "name": "initiateDeposit",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "feePayer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "ownerTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "flexProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "allowedProtocols",
+            "type": {
+              "option": {
+                "array": ["u8", 64]
+              }
+            }
+          },
+          {
+            "name": "endDate",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "returnType",
+            "type": {
+              "option": {
+                "defined": "PushOrPull"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "initiateWithdraw",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "feePayer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "ownerTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "flexProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "withdrawAmount",
+            "type": "u64"
+          },
+          {
+            "name": "withdrawAll",
+            "type": "bool"
+          },
+          {
+            "name": "returnType",
+            "type": {
+              "option": {
+                "defined": "PushOrPull"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "userWithdraw",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "ownerTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "name": "initAction",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "request",
+            "type": {
+              "defined": "ActionRequest"
+            }
+          }
+        ]
+      },
+      {
+        "name": "claimTokens",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "automation",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "ownerTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "flexTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "name": "fundTokens",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "signerTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "flexTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "name": "initMfiUserAccount",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "marginfiGroup",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "marginfiAccount",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["becomes the \"authority\" in CPI"]
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "feePayer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "mfiProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "depositMarginfi",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "marginfiGroup",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "marginfiAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "bank",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "bankLiquidityVault",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "mfiProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "depositAmount",
+            "type": "u64"
+          },
+          {
+            "name": "depositAll",
+            "type": "bool"
+          },
+          {
+            "name": "isMigration",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "name": "withdrawMarginfi",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "userAccount",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "marginfiGroup",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "marginfiAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "bank",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "bankLiquidityVaultAuthority",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "bankLiquidityVault",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mfiProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "withdrawalAmount",
+            "type": "u64"
+          },
+          {
+            "name": "withdrawAll",
+            "type": "bool"
+          },
+          {
+            "name": "isMigration",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "name": "withdrawMarginfiEmissions",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "marginfiGroup",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "marginfiAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "bank",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "destinationTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "emissionsMint",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "emissionsVault",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "emissionsAuth",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mfiProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "initDriftUserAccount",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "driftUser",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "driftUserStats",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "driftState",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["becomes the \"authority\" in CPI"]
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "feePayer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "driftProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "depositDrift",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "driftUser",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "driftUserStats",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "driftState",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "spotMarketVault",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["becomes the \"authority\" in CPI"]
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "spotMarket",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "oracle",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "feePayer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "driftProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "marketIndex",
+            "type": "u16"
+          },
+          {
+            "name": "depositAmount",
+            "type": "u64"
+          },
+          {
+            "name": "depositAll",
+            "type": "bool"
+          },
+          {
+            "name": "isMigration",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "name": "withdrawDrift",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "driftUser",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "driftUserStats",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "driftState",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "driftSigner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "spotMarketVault",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["becomes the \"authority\" in CPI"]
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "feePayer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "driftProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "marketIndex",
+            "type": "u16"
+          },
+          {
+            "name": "withdrawalAmount",
+            "type": "u64"
+          },
+          {
+            "name": "reduceOnly",
+            "type": "bool"
+          },
+          {
+            "name": "isMigration",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "name": "initSolend",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "solendMarket",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "obligation",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "solendProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "depositSolend",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "collateralMintAddress",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "liquidityMintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "collateralTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "solendMarket",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "solendReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "lendingMarketAuthority",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "reserveCollateralSupply",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserveLiquiditySupply",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "obligation",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "pyth",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "switchboard",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "solendProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "depositAmount",
+            "type": "u64"
+          },
+          {
+            "name": "depositAll",
+            "type": "bool"
+          },
+          {
+            "name": "isMigration",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "name": "withdrawSolend",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "collateralMintAddress",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "liquidityMintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "collateralTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "solendMarket",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "solendReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "lendingMarketAuthority",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "reserveCollateralSupply",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserveLiquiditySupply",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "obligation",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "pyth",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "switchboard",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "solendProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "withdrawalAmount",
+            "type": "u64"
+          },
+          {
+            "name": "withdrawAll",
+            "type": "bool"
+          },
+          {
+            "name": "isMigration",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "name": "initKaminoUserAccount",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["becomes the \"obligation_owner\" in CPI"]
+          },
+          {
+            "name": "obligation",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "lendingMarket",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "seed1Account",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "seed2Account",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "ownerUserMetadata",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "referrerUserMetadata",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "kaminoProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "tag",
+            "type": "u8"
+          },
+          {
+            "name": "id",
+            "type": "u8"
+          }
+        ]
+      },
+      {
+        "name": "depositKamino",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "obligation",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["becomes the \"obligation_owner\" in CPI"]
+          },
+          {
+            "name": "collateralMintAddress",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "liquidityMintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "collateralTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "lendingMarket",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "lendingMarketAuthority",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "reserveCollateralSupply",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserveLiquiditySupply",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "kaminoProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "instructionSysvarAccount",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "depositAmount",
+            "type": "u64"
+          },
+          {
+            "name": "depositAll",
+            "type": "bool"
+          },
+          {
+            "name": "isMigration",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "name": "withdrawKamino",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "obligation",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["becomes the \"obligation_owner\" in CPI"]
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "collateralMintAddress",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "liquidityMintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "collateralTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "lendingMarket",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "lendingMarketAuthority",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "reserveCollateralSupply",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserveLiquiditySupply",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "kaminoProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "instructionSysvarAccount",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "withdrawalAmount",
+            "type": "u64"
+          },
+          {
+            "name": "withdrawAll",
+            "type": "bool"
+          },
+          {
+            "name": "isMigration",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "name": "initMangoUserAccount",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "mangoAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mangoGroup",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["becomes the \"authority\" in CPI"]
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mangoProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "accountNum",
+            "type": "u32"
+          },
+          {
+            "name": "tokenCount",
+            "type": "u8"
+          }
+        ]
+      },
+      {
+        "name": "depositMango",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "mangoAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mangoGroup",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "mangoBank",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mangoVault",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mangoOracle",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["becomes the \"authority\" in CPI"]
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mangoProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "depositAmount",
+            "type": "u64"
+          },
+          {
+            "name": "depositAll",
+            "type": "bool"
+          },
+          {
+            "name": "isMigration",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "name": "withdrawMango",
+        "accounts": [
+          {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "owner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "mangoAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mangoGroup",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "mangoBank",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mangoVault",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mangoOracle",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["becomes the \"authority\" in CPI"]
+          },
+          {
+            "name": "mintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "flexUserTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mangoProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "withdrawalAmount",
+            "type": "u64"
+          },
+          {
+            "name": "withdrawAll",
+            "type": "bool"
+          },
+          {
+            "name": "isMigration",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "name": "promotionAdminInitReserve",
+        "accounts": [
+          {
+            "name": "admin",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "promotionAdminDepositReserve",
+        "accounts": [
+          {
+            "name": "admin",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "adminTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserveTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "name": "promotionAdminWithdrawReserve",
+        "accounts": [
+          {
+            "name": "admin",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "adminTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserveTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "name": "adminReclaimSol",
+        "accounts": [
+          {
+            "name": "admin",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "name": "promotionInitUserAuthority",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "promotionAuthority",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "authoritySeed",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "promotionInitKaminoUserAccount",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "promotionAuthority",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "obligation",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "lendingMarket",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "ownerUserMetadata",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "referrerUserMetadata",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "kaminoProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "tag",
+            "type": "u8"
+          },
+          {
+            "name": "id",
+            "type": "u8"
+          }
+        ]
+      },
+      {
+        "name": "promotionDepositKamino",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "obligation",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserveTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "promotionAuthority",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "collateralMintAddress",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "liquidityMintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "collateralTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "liquidityTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "lendingMarket",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "lendingMarketAuthority",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "reserveCollateralSupply",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserveLiquiditySupply",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "kaminoProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "instructionSysvarAccount",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "name": "promotionWithdrawKamino",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "obligation",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "promotionReserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserveTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "promotionAuthority",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "collateralMintAddress",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "liquidityMintAddress",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "collateralTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "liquidityTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserve",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "lendingMarket",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "lendingMarketAuthority",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "reserveCollateralSupply",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "reserveLiquiditySupply",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "kaminoProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "associatedTokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "instructionSysvarAccount",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "withdrawAll",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "name": "promotionTransferAuthority",
+        "accounts": [
+          {
+            "name": "admin",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "fromUserAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "toUserAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "promotionAuthority",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "promotionSetAuthorityObligation",
+        "accounts": [
+          {
+            "name": "admin",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "mintAddress",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "promotionAuthority",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "lendingMarket",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "obligation",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "kaminoProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "distributorClaim",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "distributor",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "claimStatus",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["Claim status PDA"]
+          },
+          {
+            "name": "from",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["Distributor ATA containing the tokens to distribute."]
+          },
+          {
+            "name": "to",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["Account to send the claimed tokens to."]
+          },
+          {
+            "name": "ownerTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "merkleDistributorProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "amountUnlocked",
+            "type": "u64"
+          },
+          {
+            "name": "amountLocked",
+            "type": "u64"
+          },
+          {
+            "name": "proof",
+            "type": {
+              "vec": {
+                "array": ["u8", 32]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "driftClaim",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "distributor",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "claimStatus",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["Claim status PDA"]
+          },
+          {
+            "name": "from",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["Distributor ATA containing the tokens to distribute."]
+          },
+          {
+            "name": "to",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["Account to send the claimed tokens to."]
+          },
+          {
+            "name": "ownerTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "merkleDistributorProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "amountUnlocked",
+            "type": "u64"
+          },
+          {
+            "name": "amountLocked",
+            "type": "u64"
+          },
+          {
+            "name": "proof",
+            "type": {
+              "vec": {
+                "array": ["u8", 32]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "distributorClaimPromotion",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "userAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "promotionAuthority",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "distributor",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "claimStatus",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["Claim status PDA"]
+          },
+          {
+            "name": "from",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["Distributor ATA containing the tokens to distribute."]
+          },
+          {
+            "name": "to",
+            "isMut": true,
+            "isSigner": false,
+            "docs": ["Account to send the claimed tokens to."]
+          },
+          {
+            "name": "ownerTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "merkleDistributorProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "amountUnlocked",
+            "type": "u64"
+          },
+          {
+            "name": "amountLocked",
+            "type": "u64"
+          },
+          {
+            "name": "proof",
+            "type": {
+              "vec": {
+                "array": ["u8", 32]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "accounts": [
+      {
+        "name": "PromotionReserve",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "bump",
+              "type": "u8"
+            },
+            {
+              "name": "padding",
+              "type": {
+                "array": ["u8", 7]
+              }
+            },
+            {
+              "name": "admin",
+              "type": "publicKey"
+            },
+            {
+              "name": "padding2",
+              "type": {
+                "array": ["u64", 8]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "PromotionAuthority",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "bump",
+              "type": "u8"
+            },
+            {
+              "name": "authoritySeed",
+              "docs": ["keypair or timestamp or unique string etc"],
+              "type": {
+                "array": ["u8", 19]
+              }
+            },
+            {
+              "name": "padding1",
+              "type": {
+                "array": ["u8", 12]
+              }
+            },
+            {
+              "name": "mintAddress",
+              "docs": ["flex user pda for current owner of the promotion"],
+              "type": "publicKey"
+            },
+            {
+              "name": "userAccount",
+              "type": "publicKey"
+            },
+            {
+              "name": "totalDeposits",
+              "type": "u64"
+            },
+            {
+              "name": "obligation",
+              "type": "publicKey"
+            },
+            {
+              "name": "padding2",
+              "type": {
+                "array": ["u64", 4]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "UserAccount",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "bump",
+              "type": "u8"
+            },
+            {
+              "name": "padding",
+              "type": {
+                "array": ["u8", 7]
+              }
+            },
+            {
+              "name": "owner",
+              "type": "publicKey"
+            },
+            {
+              "name": "mfiAccount",
+              "type": "publicKey"
+            },
+            {
+              "name": "solendObligation",
+              "type": "publicKey"
+            },
+            {
+              "name": "promotionSeeds",
+              "type": {
+                "array": [
+                  {
+                    "defined": "PromotionSeed"
+                  },
+                  4
+                ]
+              }
+            },
+            {
+              "name": "padding2",
+              "type": {
+                "array": ["u64", 12]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "types": [
+      {
+        "name": "ActionRequest",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "owner",
+              "type": "publicKey"
+            },
+            {
+              "name": "logValue",
+              "type": {
+                "defined": "ActionValue"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "PromotionSeed",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "authoritySeed",
+              "type": {
+                "array": ["u8", 19]
+              }
+            },
+            {
+              "name": "padding",
+              "type": {
+                "array": ["u8", 13]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "ActionValue",
+        "type": {
+          "kind": "enum",
+          "variants": [
+            {
+              "name": "NewOrder",
+              "fields": [
+                {
+                  "name": "order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "mint_address",
+                  "type": "publicKey"
+                },
+                {
+                  "name": "order_amount",
+                  "type": "u64"
+                },
+                {
+                  "name": "allowed_protocols",
+                  "type": {
+                    "array": ["u8", 64]
+                  }
+                },
+                {
+                  "name": "minimum_rate",
+                  "type": {
+                    "option": "u64"
+                  }
+                },
+                {
+                  "name": "homebase",
+                  "type": {
+                    "option": {
+                      "array": ["u8", 8]
+                    }
+                  }
+                },
+                {
+                  "name": "referrer",
+                  "type": {
+                    "option": {
+                      "array": ["u8", 8]
+                    }
+                  }
+                },
+                {
+                  "name": "delegate_only",
+                  "type": "bool"
+                }
+              ]
+            },
+            {
+              "name": "CancelOrder",
+              "fields": [
+                {
+                  "name": "order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "RevokeDelegate",
+              "fields": []
+            },
+            {
+              "name": "RefreshOrder",
+              "fields": [
+                {
+                  "name": "order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "TopUpBalance",
+              "fields": [
+                {
+                  "name": "order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "amount",
+                  "type": "u64"
+                },
+                {
+                  "name": "target_protocol",
+                  "type": {
+                    "array": ["u8", 8]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "WithdrawPartial",
+              "fields": [
+                {
+                  "name": "order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "amount",
+                  "type": "u64"
+                },
+                {
+                  "name": "target_protocol",
+                  "type": {
+                    "array": ["u8", 8]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "OrderEdit",
+              "fields": [
+                {
+                  "name": "order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "minimum_rate",
+                  "type": {
+                    "option": "u64"
+                  }
+                },
+                {
+                  "name": "homebase",
+                  "type": {
+                    "option": {
+                      "array": ["u8", 8]
+                    }
+                  }
+                },
+                {
+                  "name": "allowed_protocols",
+                  "type": {
+                    "option": {
+                      "array": ["u8", 64]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "TopUpBalanceV2",
+              "fields": [
+                {
+                  "name": "order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "new_order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "amount",
+                  "type": "u64"
+                },
+                {
+                  "name": "target_protocol",
+                  "type": {
+                    "array": ["u8", 8]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "WithdrawPartialV2",
+              "fields": [
+                {
+                  "name": "order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "new_order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "amount",
+                  "type": "u64"
+                },
+                {
+                  "name": "target_protocol",
+                  "type": {
+                    "array": ["u8", 8]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "OrderEditV2",
+              "fields": [
+                {
+                  "name": "order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "new_order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "minimum_rate",
+                  "type": {
+                    "option": "u64"
+                  }
+                },
+                {
+                  "name": "homebase",
+                  "type": {
+                    "option": {
+                      "array": ["u8", 8]
+                    }
+                  }
+                },
+                {
+                  "name": "allowed_protocols",
+                  "type": {
+                    "option": {
+                      "array": ["u8", 64]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Migration",
+              "fields": [
+                {
+                  "name": "order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "current_protocol",
+                  "type": {
+                    "array": ["u8", 8]
+                  }
+                },
+                {
+                  "name": "target_protocol",
+                  "type": {
+                    "array": ["u8", 8]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "MultiOrder",
+              "fields": [
+                {
+                  "name": "parent_order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "mint_address",
+                  "type": "publicKey"
+                },
+                {
+                  "name": "total_deposit_amount",
+                  "type": "u64"
+                },
+                {
+                  "name": "target_protocol",
+                  "type": {
+                    "array": ["u8", 8]
+                  }
+                },
+                {
+                  "name": "allowed_protocols",
+                  "type": {
+                    "array": ["u8", 64]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "UpdateActiveProtocol",
+              "fields": [
+                {
+                  "name": "order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "active_protocol",
+                  "type": {
+                    "array": ["u8", 8]
+                  }
+                },
+                {
+                  "name": "amount",
+                  "type": "u64"
+                }
+              ]
+            },
+            {
+              "name": "AccountSettings",
+              "fields": [
+                {
+                  "name": "allowed_protocols",
+                  "type": {
+                    "array": ["u8", 64]
+                  }
+                },
+                {
+                  "name": "homebase",
+                  "type": {
+                    "option": {
+                      "array": ["u8", 8]
+                    }
+                  }
+                },
+                {
+                  "name": "minimum_rate",
+                  "type": {
+                    "option": "u64"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "UserDeposit",
+              "fields": [
+                {
+                  "name": "mint_address",
+                  "type": "publicKey"
+                },
+                {
+                  "name": "amount",
+                  "type": "u64"
+                },
+                {
+                  "name": "target_protocol",
+                  "type": {
+                    "array": ["u8", 8]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "UserWithdraw",
+              "fields": [
+                {
+                  "name": "mint_address",
+                  "type": "publicKey"
+                },
+                {
+                  "name": "amount",
+                  "type": "u64"
+                },
+                {
+                  "name": "withdraw_all",
+                  "type": "bool"
+                },
+                {
+                  "name": "target_protocol",
+                  "type": {
+                    "array": ["u8", 8]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "DepositMigration",
+              "fields": [
+                {
+                  "name": "order_id",
+                  "type": {
+                    "array": ["u8", 16]
+                  }
+                },
+                {
+                  "name": "amount",
+                  "type": "u64"
+                },
+                {
+                  "name": "current_protocol",
+                  "type": {
+                    "array": ["u8", 8]
+                  }
+                },
+                {
+                  "name": "target_protocol",
+                  "type": {
+                    "array": ["u8", 8]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "PushOrPull",
+        "type": {
+          "kind": "enum",
+          "variants": [
+            {
+              "name": "Push"
+            },
+            {
+              "name": "Pull"
+            }
+          ]
+        }
+      }
+    ],
+    "events": [
+      {
+        "name": "NewOrderEvent",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey",
+            "index": false
+          },
+          {
+            "name": "orderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "mintAddress",
+            "type": "publicKey",
+            "index": false
+          },
+          {
+            "name": "orderAmount",
+            "type": "u64",
+            "index": false
+          },
+          {
+            "name": "allowedProtocols",
+            "type": {
+              "array": ["u8", 64]
+            },
+            "index": false
+          },
+          {
+            "name": "minimumRate",
+            "type": {
+              "option": "u64"
+            },
+            "index": false
+          },
+          {
+            "name": "homebase",
+            "type": {
+              "option": {
+                "array": ["u8", 8]
+              }
+            },
+            "index": false
+          },
+          {
+            "name": "referrer",
+            "type": {
+              "option": {
+                "array": ["u8", 8]
+              }
+            },
+            "index": false
+          },
+          {
+            "name": "delegateOnly",
+            "type": "bool",
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "InitiateDepositEvent",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey",
+            "index": false
+          },
+          {
+            "name": "mintAddress",
+            "type": "publicKey",
+            "index": false
+          },
+          {
+            "name": "orderAmount",
+            "type": "u64",
+            "index": false
+          },
+          {
+            "name": "allowedProtocols",
+            "type": {
+              "option": {
+                "array": ["u8", 64]
+              }
+            },
+            "index": false
+          },
+          {
+            "name": "endDate",
+            "type": {
+              "option": "u64"
+            },
+            "index": false
+          },
+          {
+            "name": "returnType",
+            "type": {
+              "option": {
+                "defined": "PushOrPull"
+              }
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "InitiateWithdrawEvent",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey",
+            "index": false
+          },
+          {
+            "name": "mintAddress",
+            "type": "publicKey",
+            "index": false
+          },
+          {
+            "name": "withdrawAmount",
+            "type": "u64",
+            "index": false
+          },
+          {
+            "name": "withdrawAll",
+            "type": "bool",
+            "index": false
+          },
+          {
+            "name": "returnType",
+            "type": {
+              "option": {
+                "defined": "PushOrPull"
+              }
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "CancelOrderEvent",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey",
+            "index": false
+          },
+          {
+            "name": "orderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "RevokeDelegateEvent",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey",
+            "index": false
+          },
+          {
+            "name": "mintAddress",
+            "type": "publicKey",
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "RefreshOrderEvent",
+        "fields": [
+          {
+            "name": "orderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "TopUpBalanceEvent",
+        "fields": [
+          {
+            "name": "orderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "amount",
+            "type": "u64",
+            "index": false
+          },
+          {
+            "name": "targetProtocol",
+            "type": {
+              "array": ["u8", 8]
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "WithdrawPartialEvent",
+        "fields": [
+          {
+            "name": "orderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "amount",
+            "type": "u64",
+            "index": false
+          },
+          {
+            "name": "targetProtocol",
+            "type": {
+              "array": ["u8", 8]
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "OrderEditEvent",
+        "fields": [
+          {
+            "name": "orderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "minimumRate",
+            "type": {
+              "option": "u64"
+            },
+            "index": false
+          },
+          {
+            "name": "homebase",
+            "type": {
+              "option": {
+                "array": ["u8", 8]
+              }
+            },
+            "index": false
+          },
+          {
+            "name": "allowedProtocols",
+            "type": {
+              "option": {
+                "array": ["u8", 64]
+              }
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "TopUpBalanceEventV2",
+        "fields": [
+          {
+            "name": "orderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "newOrderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "amount",
+            "type": "u64",
+            "index": false
+          },
+          {
+            "name": "targetProtocol",
+            "type": {
+              "array": ["u8", 8]
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "WithdrawPartialEventV2",
+        "fields": [
+          {
+            "name": "orderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "newOrderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "amount",
+            "type": "u64",
+            "index": false
+          },
+          {
+            "name": "targetProtocol",
+            "type": {
+              "array": ["u8", 8]
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "OrderEditEventV2",
+        "fields": [
+          {
+            "name": "orderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "newOrderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "minimumRate",
+            "type": {
+              "option": "u64"
+            },
+            "index": false
+          },
+          {
+            "name": "homebase",
+            "type": {
+              "option": {
+                "array": ["u8", 8]
+              }
+            },
+            "index": false
+          },
+          {
+            "name": "allowedProtocols",
+            "type": {
+              "option": {
+                "array": ["u8", 64]
+              }
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "MigrationEvent",
+        "fields": [
+          {
+            "name": "orderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "currentProtocol",
+            "type": {
+              "array": ["u8", 8]
+            },
+            "index": false
+          },
+          {
+            "name": "targetProtocol",
+            "type": {
+              "array": ["u8", 8]
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "MultiOrderEvent",
+        "fields": [
+          {
+            "name": "parentOrderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "mintAddress",
+            "type": "publicKey",
+            "index": false
+          },
+          {
+            "name": "totalDepositAmount",
+            "type": "u64",
+            "index": false
+          },
+          {
+            "name": "targetProtocol",
+            "type": {
+              "array": ["u8", 8]
+            },
+            "index": false
+          },
+          {
+            "name": "allowedProtocols",
+            "type": {
+              "array": ["u8", 64]
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "UpdateActiveProtocolEvent",
+        "fields": [
+          {
+            "name": "orderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "activeProtocol",
+            "type": {
+              "array": ["u8", 8]
+            },
+            "index": false
+          },
+          {
+            "name": "amount",
+            "type": "u64",
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "AccountSettingsEvent",
+        "fields": [
+          {
+            "name": "allowedProtocols",
+            "type": {
+              "array": ["u8", 64]
+            },
+            "index": false
+          },
+          {
+            "name": "minimumRate",
+            "type": {
+              "option": "u64"
+            },
+            "index": false
+          },
+          {
+            "name": "homebase",
+            "type": {
+              "option": {
+                "array": ["u8", 8]
+              }
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "UserDepositEvent",
+        "fields": [
+          {
+            "name": "mintAddress",
+            "type": "publicKey",
+            "index": false
+          },
+          {
+            "name": "amount",
+            "type": "u64",
+            "index": false
+          },
+          {
+            "name": "targetProtocol",
+            "type": {
+              "array": ["u8", 8]
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "UserWithdrawEvent",
+        "fields": [
+          {
+            "name": "mintAddress",
+            "type": "publicKey",
+            "index": false
+          },
+          {
+            "name": "amount",
+            "type": "u64",
+            "index": false
+          },
+          {
+            "name": "withdrawAll",
+            "type": "bool",
+            "index": false
+          },
+          {
+            "name": "targetProtocol",
+            "type": {
+              "array": ["u8", 8]
+            },
+            "index": false
+          }
+        ]
+      },
+      {
+        "name": "DepositMigrationEvent",
+        "fields": [
+          {
+            "name": "orderId",
+            "type": {
+              "array": ["u8", 16]
+            },
+            "index": false
+          },
+          {
+            "name": "amount",
+            "type": "u64",
+            "index": false
+          },
+          {
+            "name": "currentProtocol",
+            "type": {
+              "array": ["u8", 8]
+            },
+            "index": false
+          },
+          {
+            "name": "targetProtocol",
+            "type": {
+              "array": ["u8", 8]
+            },
+            "index": false
+          }
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": 6000,
+        "name": "InvalidAllParameters",
+        "msg": "Invalid all paramteres"
+      },
+      {
+        "code": 6001,
+        "name": "InvalidMigrationDestination",
+        "msg": "Destination token account invalid for migration"
+      },
+      {
+        "code": 6002,
+        "name": "InvalidWithdrawDestination",
+        "msg": "Destination token account invalid for withdraw"
+      },
+      {
+        "code": 6003,
+        "name": "MarginFiAccountAlreadyExists",
+        "msg": "MarginFi account already exists for this Flex user"
+      },
+      {
+        "code": 6004,
+        "name": "InvalidAuthoritySeed",
+        "msg": "Invalid authority seed"
+      },
+      {
+        "code": 6005,
+        "name": "OverflowError",
+        "msg": "OverflowError"
+      },
+      {
+        "code": 6006,
+        "name": "UnderflowError",
+        "msg": "UnderflowError"
+      },
+      {
+        "code": 6007,
+        "name": "PromotionSeedsLimitReached",
+        "msg": "PromotionSeedsLimitReached"
+      },
+      {
+        "code": 6008,
+        "name": "InvalidTokenAmount",
+        "msg": "Invalid token amount"
+      }
+    ],
+    "metadata": {
+      "address": "FL3X2pRsQ9zHENpZSKDRREtccwJuei8yg9fwDu9UN69Q"
+    }
+  }

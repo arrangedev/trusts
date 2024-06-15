@@ -1,0 +1,23 @@
+[package]
+name = "lulo-cpi"
+version = "0.0.1"
+description = "lulo cpi"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "lulo_cpi"
+
+[features]
+default = ["cpi"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+devnet = []
+mainnet = []
+
+[dependencies]
+anchor-gen = "0.3.1"
+anchor-lang = "0.28.0"
+anchor-spl = "0.28.0"

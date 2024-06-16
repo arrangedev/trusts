@@ -1,8 +1,11 @@
 <img src="https://i.imgur.com/UbTNpJ6.png">
 <div align="center">
-  <img src="https://badgen.net/badge/version/1.0/orange">
+  <img src="https://badgen.net/badge/version/0.1.4/orange">
   <a href="https://www.npmjs.com/package/@arrangedev/trusts-sdk" target="_blank" rel="noopener noreferrer">
-    <img src="https://badgen.net/badge/npm/0.1.3/orange">
+    <img src="https://badgen.net/badge/npm/0.1.4/orange">
+  </a>
+  <a href="https://solana.fm/address/arngwbKQjNF1q6s1NYURDPNQWHCQTfx5sdMQS9tB7ta/transactions" target="_blank" rel="noopener noreferrer">
+    <img src="https://badgen.net/badge/program/devnet/orange">
   </a>
   <img src="https://badgen.net/badge/contributions/open/orange">
 </div>

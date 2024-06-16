@@ -8,7 +8,7 @@ pub mod error;
 pub use instructions::*;
 use crate::state::vault::*;
 
-declare_id!("ATVixC5VzQYwU9FB2NQgzQ6yp7jxz4XYsJLvkqMQQgEV");
+declare_id!("arngwbKQjNF1q6s1NYURDPNQWHCQTfx5sdMQS9tB7ta");
 
 #[program]
 pub mod trusts {

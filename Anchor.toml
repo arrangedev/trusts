@@ -5,9 +5,9 @@ seeds = false
 skip-lint = false
 
 [programs.localnet]
-trusts = "ATVixC5VzQYwU9FB2NQgzQ6yp7jxz4XYsJLvkqMQQgEV"
+trusts = "arngwbKQjNF1q6s1NYURDPNQWHCQTfx5sdMQS9tB7ta"
 [programs.devnet]
-trusts = "ATVixC5VzQYwU9FB2NQgzQ6yp7jxz4XYsJLvkqMQQgEV"
+trusts = "arngwbKQjNF1q6s1NYURDPNQWHCQTfx5sdMQS9tB7ta"
 
 [registry]
 url = "https://api.apr.dev"

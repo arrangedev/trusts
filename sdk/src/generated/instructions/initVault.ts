@@ -8,7 +8,6 @@
 import * as beet from '@metaplex-foundation/beet'
 import * as web3 from '@solana/web3.js'
 import * as beetSolana from '@metaplex-foundation/beet-solana'
-import { Protocols, protocolsBeet } from '../types/Protocols'
 import { Intervals, intervalsBeet } from '../types/Intervals'
 
 /**
@@ -19,9 +18,7 @@ import { Intervals, intervalsBeet } from '../types/Intervals'
 export type InitVaultInstructionArgs = {
   vaultId: beet.bignum
   authority: web3.PublicKey
-  protocol: Protocols
   interval: Intervals
-  amount: beet.bignum
   targets: web3.PublicKey[]
   crank: web3.PublicKey
   percentage: beet.bignum
@@ -40,9 +37,7 @@ export const initVaultStruct = new beet.FixableBeetArgsStruct<
     ['instructionDiscriminator', beet.uniformFixedSizeArray(beet.u8, 8)],
     ['vaultId', beet.u64],
     ['authority', beetSolana.publicKey],
-    ['protocol', protocolsBeet],
     ['interval', intervalsBeet],
-    ['amount', beet.u64],
     ['targets', beet.array(beetSolana.publicKey)],
     ['crank', beetSolana.publicKey],
     ['percentage', beet.u64],

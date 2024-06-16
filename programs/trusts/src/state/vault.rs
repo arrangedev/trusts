@@ -68,12 +68,13 @@ impl YieldVault {
 
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, PartialEq, Eq)]
 pub enum Protocols {
+    Lulo,
     Solend,
 }
 
 impl Default for Protocols {
     fn default() -> Self {
-        Protocols::Solend
+        Protocols::Lulo
     }
 }
 

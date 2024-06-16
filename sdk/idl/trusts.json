@@ -36,20 +36,10 @@
           "type": "publicKey"
         },
         {
-          "name": "protocol",
-          "type": {
-            "defined": "Protocols"
-          }
-        },
-        {
           "name": "interval",
           "type": {
             "defined": "Intervals"
           }
-        },
-        {
-          "name": "amount",
-          "type": "u64"
         },
         {
           "name": "targets",
@@ -430,6 +420,9 @@
       "type": {
         "kind": "enum",
         "variants": [
+          {
+            "name": "Lulo"
+          },
           {
             "name": "Solend"
           }

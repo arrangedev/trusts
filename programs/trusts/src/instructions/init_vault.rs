@@ -7,9 +7,7 @@ pub fn init(
     ctx: Context<InitializeVault>,
     vault_id: u64,
     authority: Pubkey,
-    protocol: Protocols,
     interval: Intervals,
-    amount: u64,
     targets: Vec<Pubkey>,
     crank: Pubkey,
     percentage: u64
@@ -27,9 +25,9 @@ pub fn init(
     ctx.accounts.vault.set_inner(
             YieldVault::new(
                 authority,
-                protocol,
+                Protocols::Lulo,
                 interval,
-                amount,
+                0,
                 vault_id,
                 targets,
                 crank,

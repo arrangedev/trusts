@@ -18,9 +18,7 @@ pub mod trusts {
         ctx: Context<InitializeVault>,
         vault_id: u64,
         authority: Pubkey,
-        protocol: Protocols,
         interval: Intervals,
-        amount: u64,
         targets: Vec<Pubkey>,
         crank: Pubkey,
         percentage: u64
@@ -29,9 +27,7 @@ pub mod trusts {
             ctx, 
             vault_id, 
             authority,
-            protocol, 
             interval, 
-            amount, 
             targets, 
             crank,
             percentage

@@ -16,6 +16,7 @@ const config: Config = {
       animation: {
         grid: "grid 15s linear infinite",
         gradient: "gradient 8s linear infinite",
+        ripple: "ripple 3400ms ease infinite",
       },
       keyframes: {
         gradient: {
@@ -27,9 +28,17 @@ const config: Config = {
           "0%": { transform: "translateY(-50%)" },
           "100%": { transform: "translateY(0)" },
         },
+        ripple: {
+          "0%, 100%": {
+            transform: "translate(-50%, -50%) scale(1)",
+          },
+          "50%": {
+            transform: "translate(-50%, -50%) scale(0.9)",
+          },
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };
 export default config;

@@ -7,7 +7,7 @@ export default function Vaults() {
   return (
     <>
       <SEO
-        title="Vaults | Trusts Protocol"
+        title="My Trusts | Trusts Protocol"
         description="Support a multitude of wallets with your Solana DeFi yields."
         image=""
       />
@@ -19,7 +19,7 @@ export default function Vaults() {
         <div className="mt-12 grid grid-cols-3 gap-4 px-20">
           <VaultCard
             pubkey="hello"
-            protocol="Solend"
+            interval="Weekly"
             apy={12}
             tokenSymbol="USDC"
             tokenMint=""

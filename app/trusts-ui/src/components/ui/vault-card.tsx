@@ -20,7 +20,7 @@ import { FC } from "react";
 
 interface VaultCardProps {
   pubkey: string;
-  protocol: string;
+  interval: string;
   tokenSymbol: string;
   tokenMint: string;
   apy: number;
@@ -30,7 +30,7 @@ interface VaultCardProps {
 
 const VaultCard: FC<VaultCardProps> = ({
   pubkey,
-  protocol,
+  interval,
   tokenSymbol,
   tokenMint,
   apy,
@@ -64,7 +64,7 @@ const VaultCard: FC<VaultCardProps> = ({
           className="rounded-full w-10 h-10"
         />
         <label className="flex gap-1 items-center text-lg font-semibold bg-gradient-to-br from-[#1a1a1a] to-zinc-400 bg-clip-text leading-none text-transparent">
-          {tokenSymbol + " <> " + protocol}
+          {interval + " " + tokenSymbol}
         </label>
       </div>
       <div className="mt-3 grid grid-cols-3 place-items-start gap-2 w-full">

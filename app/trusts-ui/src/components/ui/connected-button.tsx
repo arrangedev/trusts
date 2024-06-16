@@ -60,7 +60,7 @@ const ConnectedButton: FC = () => {
             <div className="">
               <MenuItem>
                 {({ active }) => (
-                  <Link href={"/vaults"} passHref>
+                  <Link href={"/my-trusts"} passHref>
                     <button
                       className={classNames(
                         active
@@ -70,7 +70,7 @@ const ConnectedButton: FC = () => {
                       )}
                     >
                       <IconBuildingBank stroke={1} />
-                      My Vaults
+                      My Trusts
                     </button>
                   </Link>
                 )}

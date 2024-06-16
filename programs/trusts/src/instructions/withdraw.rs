@@ -3,13 +3,14 @@ use anchor_spl::{token, associated_token};
 
 use crate::{error::VaultError, YieldVault};
 
+// This should withdraw from the vault
 pub fn withdraw(
     ctx: Context<Withdraw>,
     amount: u64
 ) -> Result<()> {
-    let vault = &ctx.accounts.vault;
+    let vault = &mut ctx.accounts.vault;
     require!(
-        ctx.accounts.payer.key() == ctx.accounts.vault.authority,
+        ctx.accounts.payer.key() == vault.authority,
         VaultError::WrongVaultAuthority
     );
 
@@ -18,32 +19,20 @@ pub fn withdraw(
     let seeds = vec![YieldVault::SEED_PREFIX.as_bytes(), vault.mint.as_ref(), id_ref.as_ref(), vault.authority.as_ref(), &bump];
     let signer_seeds = vec![seeds.as_slice()];
 
-    lulo_cpi::cpi::initiate_withdraw(
+    token::transfer(
         CpiContext::new_with_signer(
-            ctx.accounts.lulo_program.to_account_info(),
-            lulo_cpi::cpi::accounts::InitiateWithdraw {
-                owner: ctx.accounts.vault.to_account_info(),
-                fee_payer: ctx.accounts.payer.to_account_info(),
-                owner_token_account: ctx.accounts.vault_token_account.to_account_info(),
-                user_account: ctx.accounts.lulo_user_account.to_account_info(),
-                flex_user_token_account: ctx.accounts.lulo_user_token_account.to_account_info(),
-                mint_address: ctx.accounts.mint.to_account_info(),
-                promotion_reserve: ctx.accounts.lulo_promotion_reserve.to_account_info(),
-                flex_program: ctx.accounts.lulo_program.to_account_info(),
-                token_program: ctx.accounts.token_program.to_account_info(),
-                system_program: ctx.accounts.system_program.to_account_info(),
-                associated_token_program: ctx
-                    .accounts
-                    .associated_token_program
-                    .to_account_info(),
+            ctx.accounts.token_program.to_account_info(),
+            token::Transfer {
+                from: ctx.accounts.payer_token_account.to_account_info(),
+                to: ctx.accounts.vault_token_account.to_account_info(),
+                authority: ctx.accounts.payer.to_account_info(),
             },
-            &signer_seeds,
-        ),
-        amount, // withdraw_amount
-        false,  // withdraw_all
-        None,   // return_type
+            &signer_seeds
+        ), 
+        amount
     )?;
-    
+
+    vault.amount -= amount;
 
     Ok(())
 }
@@ -70,26 +59,15 @@ pub struct Withdraw<'info> {
     pub mint: Account<'info, token::Mint>,
 
     #[account(mut)]
-    /// CHECK: cpi
-    pub lulo_user_account: UncheckedAccount<'info>,
-    #[account(mut)]
-    /// CHECK: cpi
-    pub lulo_user_token_account: UncheckedAccount<'info>,
-    #[account(mut)]
-    /// CHECK: CPI
-    pub lulo_promotion_reserve: UncheckedAccount<'info>,
-
-    #[account(mut)]
     pub payer: Signer<'info>,
     #[account(
         mut,
-        constraint = payer_token_account.owner == payer.key()
+        associated_token::mint = mint.key(),
+        associated_token::authority = payer.key()
     )]
     pub payer_token_account: Account<'info, token::TokenAccount>,
+    
     // Programs & Sysvars
-    #[account(address = lulo_cpi::ID)]
-    /// CHECK: CPI
-    pub lulo_program: AccountInfo<'info>,
     pub clock: Sysvar<'info, Clock>,
     pub system_program: Program<'info, System>,
     pub token_program: Program<'info, token::Token>,

@@ -20,18 +20,18 @@ impl YieldVault {
     pub const SEED_PREFIX: &'static str = "yield_vault";
     pub const MAX_TARGETS: usize = 5;
 
-    pub const SPACE: usize = 8 
+    pub const SPACE: usize = 8      // Discriminator
+        + 32                        // Pubkey
+        + 1                         // Enum (Singleton)
+        + 1                         // Enum (Singleton)
         + 4                         // u64
-        + 4                         // String
         + 4                         // u64
-        + 4                         // u64
-        + 4                         // u64
-        + 1                         // u8
-        + 160                       // Vec<Pubkey> (Max 5)
+        + (32 * Self::MAX_TARGETS)  // Vec<Pubkey> (max 5)
+        + 32                        // Pubkey
+        + 8                         // f64
         + 32                        // Pubkey
         + 1                         // u8
-        + 4                         // Enum (Singleton)
-        + 250;                      // Padding
+        + 150;                      // Padding
 
     pub fn new(
         authority: Pubkey,

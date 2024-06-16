@@ -1,6 +1,9 @@
 <img src="https://i.imgur.com/UbTNpJ6.png">
 <div align="center">
   <img src="https://badgen.net/badge/version/1.0/orange">
+  <a href="https://www.npmjs.com/package/@arrangedev/trusts-sdk" target="_blank" rel="noopener noreferrer">
+    <img src="https://badgen.net/badge/npm/0.1.3/orange">
+  </a>
   <img src="https://badgen.net/badge/contributions/open/orange">
 </div>
 <h1 align="center">Trusts Protocol</h1>

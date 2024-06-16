@@ -13,4 +13,10 @@ pub enum VaultError {
 
     #[msg("Max targets specifiable is 5.")]
     TooManyTargets,
+
+    #[msg("Percentage is under the minimum")]
+    PercentageTooSmall,
+
+    #[msg("Percentage is over 100%")]
+    PercentageTooLarge,
 }

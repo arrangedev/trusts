@@ -23,7 +23,7 @@ pub mod trusts {
         amount: u64,
         targets: Vec<Pubkey>,
         crank: Pubkey,
-        percentage: f64
+        percentage: u64
     ) -> Result<()> {
         instructions::init(
             ctx, 

@@ -11,7 +11,7 @@ pub struct YieldVault {
     pub vault_id: u64,
     pub targets: Vec<Pubkey>,
     pub crank: Pubkey,
-    pub percentage: f64,
+    pub percentage: u64,
     pub mint: Pubkey,
     pub bump: u8,
 }
@@ -19,6 +19,8 @@ pub struct YieldVault {
 impl YieldVault {
     pub const SEED_PREFIX: &'static str = "yield_vault";
     pub const MAX_TARGETS: usize = 5;
+    pub const MAX_PERCENTAGE: u64 = 100;
+    pub const MIN_PERCENTAGE: u64 = 1;
 
     pub const SPACE: usize = 8      // Discriminator
         + 32                        // Pubkey
@@ -28,7 +30,7 @@ impl YieldVault {
         + 4                         // u64
         + (32 * Self::MAX_TARGETS)  // Vec<Pubkey> (max 5)
         + 32                        // Pubkey
-        + 8                         // f64
+        + 1                         // i8
         + 32                        // Pubkey
         + 1                         // u8
         + 150;                      // Padding
@@ -41,7 +43,7 @@ impl YieldVault {
         vault_id: u64, 
         targets: Vec<Pubkey>, 
         crank: Pubkey,
-        percentage: f64,
+        percentage: u64,
         mint: Pubkey, 
         bump: u8
     ) -> Result<Self> {

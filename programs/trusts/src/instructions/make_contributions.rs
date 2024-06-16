@@ -19,7 +19,7 @@ pub fn make_contributions<'info>(
     require!(target_accounts.len() <= 5, VaultError::TooManyTargets);
 
     let initial = vault.amount;
-    let percentage = vault.percentage;
+    let percentage: f64 = (vault.percentage / 10) as f64;
     let current_balance = ctx.accounts.vault_token_account.amount;
 
     let interest = current_balance - initial;

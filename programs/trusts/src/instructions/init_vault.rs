@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_spl::token;
 
-use crate::{Protocols, Intervals, YieldVault};
+use crate::{error::VaultError, Intervals, Protocols, YieldVault};
 
 pub fn init(
     ctx: Context<InitializeVault>,
@@ -12,8 +12,18 @@ pub fn init(
     amount: u64,
     targets: Vec<Pubkey>,
     crank: Pubkey,
-    percentage: f64
+    percentage: u64
 ) -> Result<()> {
+    require!(
+        percentage >= YieldVault::MIN_PERCENTAGE, 
+        VaultError::PercentageTooSmall
+    );
+
+    require!(
+        percentage <= YieldVault::MAX_PERCENTAGE, 
+        VaultError::PercentageTooLarge
+    );
+
     ctx.accounts.vault.set_inner(
             YieldVault::new(
                 authority,

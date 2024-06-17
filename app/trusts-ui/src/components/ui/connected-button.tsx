@@ -25,8 +25,6 @@ const ConnectedButton: FC = () => {
   const { publicKey, wallet, disconnect } = useWallet();
   const [open, setOpen] = useState<boolean>(false);
 
-  console.log(publicKey?.toString());
-
   return (
     <>
       <WalletModal open={open} setOpen={setOpen} />

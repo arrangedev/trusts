@@ -1,8 +1,35 @@
+import * as trusts from "@arrangedev/trusts-sdk";
+import { schema } from "@/lib/schemas";
+import { CreateInitialState, Mints } from "@/lib/types";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { IconCirclePlus, IconRocket } from "@tabler/icons-react";
+import { useForm, yupResolver } from "@mantine/form";
 
 export default function CreateForm() {
   const { publicKey } = useWallet();
+
+  const initialState: CreateInitialState = {
+    name: "",
+    admin: "",
+    isPublic: "true",
+    deposit: 1,
+    percentage: 1,
+    targets: [],
+    mint: Mints.USDC,
+    interval: trusts.types.Intervals.Weekly,
+    email: "",
+    notificationConfig: {
+      deposits: false,
+      contributions: false,
+      withdrawals: false,
+    },
+  };
+
+  const form = useForm({
+    validate: yupResolver(schema),
+    validateInputOnBlur: true,
+    initialValues: initialState,
+  });
 
   return (
     <form>
@@ -31,10 +58,16 @@ export default function CreateForm() {
                     type="text"
                     name="name"
                     id="website"
+                    {...form.getInputProps("name")}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="Super Awesome Vault"
                   />
                 </div>
+                {form.errors.name && (
+                  <span className="mt-4 font-poppins text-xs text-red-500 max-[480px]:text-sm">
+                    {form.errors.name}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -54,10 +87,16 @@ export default function CreateForm() {
                     type="text"
                     name="name"
                     id="website"
+                    {...form.getInputProps("admin")}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder={publicKey?.toString()}
                   />
                 </div>
+                {form.errors.admin && (
+                  <span className="mt-4 font-poppins text-xs text-red-500 max-[480px]:text-sm">
+                    {form.errors.admin}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -73,10 +112,11 @@ export default function CreateForm() {
                   id="visible"
                   name="visible"
                   autoComplete="visible"
+                  {...form.getInputProps("isPublic")}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 >
-                  <option>Public</option>
-                  <option>Private</option>
+                  <option value={"true"}>Public</option>
+                  <option value={"false"}>Private</option>
                 </select>
               </div>
             </div>
@@ -94,7 +134,7 @@ export default function CreateForm() {
           </div>
 
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
-          <div className="sm:col-span-3">
+            <div className="sm:col-span-3">
               <label
                 htmlFor="first-name"
                 className="block text-sm font-medium leading-6 text-gray-900"
@@ -109,10 +149,16 @@ export default function CreateForm() {
                   type="number"
                   name="contribution"
                   id="contribution"
+                  {...form.getInputProps("deposit")}
                   autoComplete="contribution"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6"
                 />
               </div>
+              {form.errors.deposit && (
+                <span className="mt-4 font-poppins text-xs text-red-500 max-[480px]:text-sm">
+                  {form.errors.deposit}
+                </span>
+              )}
             </div>
 
             <div className="sm:col-span-3">
@@ -130,12 +176,13 @@ export default function CreateForm() {
                   id="visible"
                   name="visible"
                   autoComplete="visible"
+                  {...form.getInputProps("mint")}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 >
-                  <option>USDC</option>
-                  <option>SOL</option>
-                  <option>BONK</option>
-                  <option>JUP</option>
+                  <option value={Mints.USDC}>USDC</option>
+                  <option value={Mints.SOL}>SOL</option>
+                  <option value={Mints.BONK}>BONK</option>
+                  <option value={Mints.JUP}>JUP</option>
                 </select>
               </div>
             </div>
@@ -148,7 +195,7 @@ export default function CreateForm() {
                 Contribution Percentage
               </label>
               <p className="text-zinc-400 text-xs">
-                Percentage of yield allocated to target wallets.
+                Percentage of yield allocated to targets.
               </p>
               <div className="mt-2">
                 <input
@@ -156,9 +203,15 @@ export default function CreateForm() {
                   name="contribution"
                   id="contribution"
                   autoComplete="contribution"
+                  {...form.getInputProps("percentage")}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6"
                 />
               </div>
+              {form.errors.percentage && (
+                <span className="mt-4 font-poppins text-xs text-red-500 max-[480px]:text-sm">
+                  {form.errors.percentage}
+                </span>
+              )}
             </div>
 
             <div className="sm:col-span-3">
@@ -176,12 +229,14 @@ export default function CreateForm() {
                   id="visible"
                   name="visible"
                   autoComplete="visible"
+                  {...form.getInputProps("interval")}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 >
-                  <option>Daily</option>
-                  <option>Weekly</option>
-                  <option>Monthly</option>
-                  <option>Yearly</option>
+                  <option value={trusts.types.Intervals.Weekly}>Weekly</option>
+                  <option value={trusts.types.Intervals.Monthly}>
+                    Monthly
+                  </option>
+                  <option value={trusts.types.Intervals.Yearly}>Yearly</option>
                 </select>
               </div>
             </div>
@@ -256,9 +311,15 @@ export default function CreateForm() {
                       id="comments"
                       name="comments"
                       type="checkbox"
+                      {...form.getInputProps("email")}
                       className="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-600"
                     />
                   </div>
+                  {form.errors.percentage && (
+                    <span className="mt-4 font-poppins text-xs text-red-500 max-[480px]:text-sm">
+                      {form.errors.percentage}
+                    </span>
+                  )}
                   <div className="text-sm leading-6">
                     <label
                       htmlFor="comments"

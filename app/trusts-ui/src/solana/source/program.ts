@@ -9,7 +9,7 @@ export const getProgram = (wallet: anchor.Wallet) => {
   const idl = IDL as anchor.Idl;
   const program = new anchor.Program(
     idl,
-    new PublicKey(""),
+    new PublicKey("arngwbKQjNF1q6s1NYURDPNQWHCQTfx5sdMQS9tB7ta"),
     provider
   ) as unknown as anchor.Program<Trusts>;
 

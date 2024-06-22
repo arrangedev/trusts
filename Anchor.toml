@@ -8,12 +8,14 @@ skip-lint = false
 trusts = "arngwbKQjNF1q6s1NYURDPNQWHCQTfx5sdMQS9tB7ta"
 [programs.devnet]
 trusts = "arngwbKQjNF1q6s1NYURDPNQWHCQTfx5sdMQS9tB7ta"
+[programs.mainnet]
+trusts = "arngwbKQjNF1q6s1NYURDPNQWHCQTfx5sdMQS9tB7ta"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Devnet"
+cluster = "mainnet"
 wallet = "/Users/joeymeere/.config/solana/id.json"
 
 [scripts]

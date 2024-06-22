@@ -20,3 +20,4 @@ anchor-lang = "0.28.0"
 anchor-spl = "0.28.0"
 lulo-cpi = { path = "../lulo" }
 solana-program = "1.16.12"
+solana-security-txt = "1.1.1"

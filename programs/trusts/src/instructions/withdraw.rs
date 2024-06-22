@@ -47,7 +47,7 @@ pub struct Withdraw<'info> {
             vault.vault_id.to_le_bytes().as_ref(),
             payer.key().as_ref()
         ],
-        bump,
+        bump = vault.bump,
     )]
     pub vault: Account<'info, YieldVault>,
     #[account(

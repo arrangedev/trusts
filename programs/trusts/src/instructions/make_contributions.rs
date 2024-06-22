@@ -18,6 +18,13 @@ pub fn make_contributions<'info>(
 
     require!(target_accounts.len() <= 5, VaultError::TooManyTargets);
 
+    // Signer Seeds
+    let bump = vault.bump.to_le_bytes();
+    let id_ref = vault.vault_id.to_le_bytes();
+    let seeds = vec![YieldVault::SEED_PREFIX.as_bytes(), vault.mint.as_ref(), id_ref.as_ref(), vault.authority.as_ref(), &bump];
+    let signer_seeds = vec![seeds.as_slice()];
+
+    // Calc actual contribution amounts
     let initial = vault.amount;
     let percentage: f64 = (vault.percentage / 100) as f64;
     let current_balance = ctx.accounts.vault_token_account.amount;
@@ -35,18 +42,18 @@ pub fn make_contributions<'info>(
         require!(elapsed.contains(&account.key()) == false, VaultError::TargetAccountInvalid);
 
         let token_program_info = ctx.accounts.token_program.to_account_info();
-        let payer_token_account_info: AnchorAccount = ctx.accounts.payer_token_account.to_account_info();
+        let vault_token_account_info: AnchorAccount = ctx.accounts.vault_token_account.to_account_info();
         let account_info = account.to_account_info();
-        let payer_info: AnchorAccount = ctx.accounts.payer.to_account_info();
 
         let cpi_ctx: lulo_cpi::CpiContext<'_, '_, '_, 'info, anchor_spl::token::Transfer<'info>> = 
-            CpiContext::new(
+            CpiContext::new_with_signer(
                 token_program_info,
                 token::Transfer {
-                    from: payer_token_account_info.to_account_info(),
+                    from: vault_token_account_info.to_account_info(),
                     to: account_info,
-                    authority: payer_info.to_account_info(),
+                    authority: vault.to_account_info(),
                 },
+                &signer_seeds
             );
 
         token::transfer(
@@ -71,11 +78,6 @@ pub struct MakeContributions<'info> {
     pub mint: Account<'info, token::Mint>,
     #[account(mut)]
     pub payer: Signer<'info>,
-    #[account(
-        mut,
-        constraint = payer_token_account.owner == payer.key()
-    )]
-    pub payer_token_account: Account<'info, token::TokenAccount>,
     // Programs & Sysvars
     pub clock: Sysvar<'info, Clock>,
     pub system_program: Program<'info, System>,

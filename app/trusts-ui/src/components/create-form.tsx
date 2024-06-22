@@ -4,9 +4,18 @@ import { CreateInitialState, Mints } from "@/lib/types";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { IconCirclePlus, IconRocket } from "@tabler/icons-react";
 import { useForm, yupResolver } from "@mantine/form";
+import { useState } from "react";
 
 export default function CreateForm() {
   const { publicKey } = useWallet();
+  const [addressCount, setAddressCount] = useState(1);
+
+  const handleAddAddress = (e: any) => {
+    e.preventDefault();
+    if (addressCount < 5) {
+      setAddressCount(addressCount + 1);
+    }
+  };
 
   const initialState: CreateInitialState = {
     name: "",
@@ -251,7 +260,8 @@ export default function CreateForm() {
               <p className="text-zinc-400 text-xs">
                 Addresses where contributions will be sent to.
               </p>
-              <div className="mt-2">
+              {[...Array(addressCount)].map((_, i) => (
+              <div key={i} className="mt-2">
                 <input
                   id="target1"
                   name="target1"
@@ -260,13 +270,16 @@ export default function CreateForm() {
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6"
                 />
               </div>
+              ))}
+              {addressCount < 5 && (
               <button
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => handleAddAddress(e)}
                 className="mt-2 flex gap-1 items-center text-zinc-400 hover:text-zinc-600"
               >
                 <IconCirclePlus className="w-4" />
                 <p className="text-sm">Add Address</p>
               </button>
+              )}
             </div>
           </div>
         </div>

@@ -58,7 +58,7 @@ pub struct WithdrawFromProtocol<'info> {
             vault.vault_id.to_le_bytes().as_ref(),
             payer.key().as_ref()
         ],
-        bump,
+        bump = vault.bump,
     )]
     pub vault: Account<'info, YieldVault>,
     #[account(
@@ -81,11 +81,6 @@ pub struct WithdrawFromProtocol<'info> {
 
     #[account(mut)]
     pub payer: Signer<'info>,
-    #[account(
-        mut,
-        constraint = payer_token_account.owner == payer.key()
-    )]
-    pub payer_token_account: Account<'info, token::TokenAccount>,
     // Programs & Sysvars
     #[account(address = lulo_cpi::ID)]
     /// CHECK: CPI
